@@ -45,13 +45,12 @@
   <script src="{{ asset ('assets/vendor/tinymce/tinymce.min.js') }}"></script>
   <script src="{{ asset ('assets/vendor/php-email-form/validate.js') }}"></script>
   
-  @include('layouts.nav')
   <!-- Template Main JS File -->
+  @include('layouts.header')
   <div class="wrapper">
     @include('layouts.sidebar')
   
     <main id="main" class="main">
-      {{-- @include('layouts.header') --}}
       @yield('content')
   
       {{-- @include('layouts.footer') --}}

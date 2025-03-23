@@ -3,19 +3,19 @@
 @section('content')
 
 <div class="pagetitle">
-    <h1>Dashboard</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Dashboard</li>
-        <li class="breadcrumb-item active">Students</li>
-      </ol>
-    </nav>  
-  </div><!-- End Page Title -->
+  <h1>Users</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item">Users</li>
+      <li class="breadcrumb-item active">Mahasiswa</li>
+    </ol>
+  </nav>  
+</div><!-- End Page Title -->
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Students</h5>
-        <table class="table table-hover">
+        <h5 class="card-title">Mahasiswa</h5>
+        <table class="table datatable">
             <thead>
                 <tr>
                 <th scope="col">NIP</th>

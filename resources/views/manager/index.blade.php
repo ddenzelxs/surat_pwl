@@ -1,5 +1,5 @@
 @extends('layouts.index')
 
 @section('content')
-<p>aaaaaaaaaaaa</p>
+<h1>Ini Dashboard?</h1>
 @endsection

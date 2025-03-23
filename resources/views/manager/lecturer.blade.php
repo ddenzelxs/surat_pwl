@@ -3,18 +3,24 @@
 @section('content')
 
 <div class="pagetitle">
-    <h1>Dashboard</h1>
+    <h1>Users</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Dashboard</li>
-        <li class="breadcrumb-item active">Lecturers</li>
+        <li class="breadcrumb-item">Users</li>
+        <li class="breadcrumb-item active">Dosen</li>
       </ol>
     </nav>  
   </div><!-- End Page Title -->
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Students</h5>
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title">Dosen</h5>
+            <a href="{{ route('manager.create') }}" class="btn btn-primary rounded-pill">
+                <i class="fa fa-plus"></i>
+                Add Data
+            </a>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>

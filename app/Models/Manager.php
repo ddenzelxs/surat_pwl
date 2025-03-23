@@ -10,6 +10,7 @@ class Manager extends Model
     protected $primaryKey = 'nrp_nip';
     public $incrementing = false;
     protected $keyType = 'string';
+    public $timestamps = false;
 
-    protected $fillable = ['nrp_nip', 'nama_lengkap', 'email', 'password', 'role', 'status'];
+    protected $fillable = ['nrp_nip', 'nama_lengkap', 'email', 'password', 'role'];
 }

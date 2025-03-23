@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index'); // Main Manager Dashboard
 Route::get('/manager/student', [ManagerController::class, 'showStudent'])->name('manager.student');
 Route::get('/manager/lecturer', [ManagerController::class, 'showLecturer'])->name('manager.lecturer');
+Route::get('/manager/create', [ManagerController::class, 'create'])->name('manager.create');
+Route::post('/manager/create', [ManagerController::class, 'store'])->name('manager.store');
 
 require __DIR__.'/auth.php';
 
