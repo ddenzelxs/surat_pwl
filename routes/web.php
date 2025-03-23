@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ManagerController;
 
 
 Route::get('/', function () {
@@ -19,7 +20,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index'); // Main Manager Dashboard
+Route::get('/manager/student', [ManagerController::class, 'showStudent'])->name('manager.student');
+Route::get('/manager/lecturer', [ManagerController::class, 'showLecturer'])->name('manager.lecturer');
 
 require __DIR__.'/auth.php';
 

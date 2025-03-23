@@ -1,0 +1,43 @@
+@extends('layouts.index')
+
+@section('content')
+
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Dashboard</li>
+        <li class="breadcrumb-item active">Lecturers</li>
+      </ol>
+    </nav>  
+  </div><!-- End Page Title -->
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Students</h5>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">NIP</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($lecturers as $lecturers)
+                    <tr>
+                        <td>{{ $lecturers->nrp_nip }}</td> <!-- Use nrp_nip instead of id -->
+                        <td>{{ $lecturers->nama_lengkap }}</td> <!-- Use nama_lengkap instead of name -->
+                        <td>{{ $lecturers->email }}</td>
+                        <td>{{ $lecturers->status == 1 ? 'Active' : 'Inactive' }}</td>
+                        <td></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+          <!-- End Table with hoverable rows -->    
+    </div>
+</div>
+@endsection
