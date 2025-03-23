@@ -58,5 +58,19 @@
           <span>F.A.Q</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#student-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Students</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="student-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/student">
+              <i class="bi bi-circle"></i><span>Student</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- Tables Nav -->
+
     </ul>
   </aside><!-- End Sidebar-->
