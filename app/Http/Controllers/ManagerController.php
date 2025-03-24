@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Manager;
+use App\Models\Users;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
@@ -11,12 +11,12 @@ class ManagerController extends Controller
     }
 
     public function showStudent() {
-        $students = Manager::where('role', 0)->get();
+        $students = Users::where('role', 0)->get();
         return view('manager.student', compact('students'));
     }
 
     public function showLecturer() {
-        $lecturers = Manager::where('role', 1)->get();
+        $lecturers = Users::where('role', 1)->get();
         return view('manager.lecturer', compact('lecturers'));
     }
 
@@ -33,7 +33,7 @@ class ManagerController extends Controller
             'role' => ['required', 'in:0,1,2,3'],
         ]);
         // 0 mahasiswa, 1 Dosen, 2 Kaprodi, 3 Manajer Operasiona
-        $lecturer = new Manager($request->all());
+        $lecturer = new Users($request->all());
         $lecturer->password = bcrypt($request->password);
         $lecturer->status = 1;
         $lecturer->save();
