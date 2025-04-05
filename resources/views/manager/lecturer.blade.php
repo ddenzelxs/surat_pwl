@@ -7,14 +7,14 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item">Users</li>
-                <li class="breadcrumb-item active">Dosen</li>
+                <li class="breadcrumb-item active">Kepala Program Studi</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Dosen</h5>
+                <h5 class="card-title">Kepala Program Studi</h5>
                 <a href="{{ route('manager.create') }}" class="btn btn-primary rounded-pill">
                     <i class="fa fa-plus"></i>
                     Add Data

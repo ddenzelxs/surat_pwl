@@ -53,7 +53,7 @@
     <main id="main" class="main">
       @yield('content')
     </main>
-    @yield('ExtraJS')
+    @include('layouts.sweetalert')
 </body>
 
 </body>

@@ -39,7 +39,6 @@
                             <td>{{ $manager->email }}</td>
                             <td>{{ $manager->prodi->nama_prodi ?? '-' }}</td>
                             <td>{{ $manager->status == 1 ? 'Active' : 'Inactive' }}</td>
-                            <td></td>
                             <td>
                                 <a href="{{ route('manager.edit', $manager->nrp_nip) }}" class="btn btn-sm btn-warning">
                                     <i class="fa fa-edit"></i> Edit

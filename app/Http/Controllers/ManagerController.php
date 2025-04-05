@@ -79,8 +79,16 @@ class ManagerController extends Controller
 
         $user->save();
 
-        return redirect()->route('manager.index')
-            ->with('status', 'Data berhasil ditambahkan');
+        switch ($request->role_id) {
+            case 1: // Mahasiswa
+                return redirect()->route('manager.student')->with('status', 'Data berhasil ditambahkan');
+            case 2: // Kaprodi
+                return redirect()->route('manager.lecturer')->with('status', 'Data berhasil ditambahkan');
+            case 3: // Manager Operasional
+                return redirect()->route('manager.manager')->with('status', 'Data berhasil ditambahkan');
+            default:
+                return redirect()->route('manager.index')->with('status', 'Data berhasil ditambahkan');
+        }
     }
 
     public function edit($id)
@@ -99,6 +107,7 @@ class ManagerController extends Controller
             'nama_lengkap' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:100', "unique:users,email,$id,nrp_nip"],
             'password' => ['nullable', 'string', 'min:6'],
+            'status' => ['required', 'in:0,1'],
             'role_id' => ['required', 'integer', 'exists:role,id'],
             'prodi_id' => ['required', 'integer', 'exists:prodi,id'],
         ]);
