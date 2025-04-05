@@ -118,13 +118,13 @@ class ManagerController extends Controller
             $kaprodiExist = Users::where('role_id', 2)
                 ->where('prodi_id', $request->prodi_id)
                 ->where('status', 1)
-                ->where('nrp_nip', '!=', $id) // Jangan hitung diri sendiri
+                ->where('nrp_nip', '!=', $id)
                 ->first();
 
             if ($kaprodiExist) {
                 return redirect()->back()
                     ->withInput()
-                    ->with('error', 'Sudah ada Kaprodi aktif untuk program studi ini!');
+                    ->withErrors(['prodi_id' => 'Sudah ada Kaprodi aktif untuk program studi ini. Nonaktifkan terlebih dahulu.']);
             }
         }
 
@@ -140,6 +140,42 @@ class ManagerController extends Controller
         }
 
         $user->save();
-        return redirect()->route('manager.index')->with('status', 'Data berhasil diperbarui');
+
+        switch ($request->role_id) {
+            case 1: // Mahasiswa
+                return redirect()->route('manager.student')->with('status', 'Data berhasil ditambahkan');
+            case 2: // Kaprodi
+                return redirect()->route('manager.lecturer')->with('status', 'Data berhasil ditambahkan');
+            case 3: // Manager Operasional
+                return redirect()->route('manager.manager')->with('status', 'Data berhasil ditambahkan');
+            default:
+                return redirect()->route('manager.index')->with('status', 'Data berhasil ditambahkan');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $user = Users::findOrFail($id);
+        $user->delete();
+
+        switch ($user->role_id) {
+            case 1:
+                return redirect()->route('manager.student')->with('status', 'Data berhasil dihapus');
+            case 2:
+                return redirect()->route('manager.lecturer')->with('status', 'Data berhasil dihapus');
+            case 3:
+                return redirect()->route('manager.manager')->with('status', 'Data berhasil dihapus');
+            default:
+                return redirect()->route('manager.index')->with('status', 'Data berhasil dihapus');
+        }
+    }
+
+    public function toggleStatus($id)
+    {
+        $user = Users::findOrFail($id);
+        $user->status = $user->status == 1 ? 0 : 1;
+        $user->save();
+
+        return redirect()->back()->with('status', 'Status pengguna berhasil diperbarui.');
     }
 }

@@ -73,29 +73,4 @@
             </form>
         </div>
     </div>
-@section('ExtraJS')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        @if (session('status'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil',
-                text: '{{ session('status') }}',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        @endif
-
-        @if ($errors->any())
-            let errorMessage = '';
-            @foreach ($errors->all() as $error)
-                errorMessage += '{{ $error }}\n';
-            @endforeach
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: errorMessage
-            });
-        @endif
-    </script>
 @endsection

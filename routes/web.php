@@ -26,6 +26,8 @@ Route::get('/manager/create', [ManagerController::class, 'create'])->name('manag
 Route::post('/manager/create', [ManagerController::class, 'store'])->name('manager.store');
 Route::get('/manager/{id}/edit', [ManagerController::class, 'edit'])->name('manager.edit');
 Route::put('/manager/{id}', [ManagerController::class, 'update'])->name('manager.update');
+Route::delete('/manager/{id}', [ManagerController::class, 'destroy'])->name('manager.destroy');
+Route::patch('/manager/{id}/toggle-status', [ManagerController::class, 'toggleStatus'])->name('manager.toggleStatus');
 
 
 

@@ -20,7 +20,7 @@
                     Add Data
                 </a>
             </div>
-            <table class="table table-hover">
+            <table class="table datatable">
                 <thead>
                     <tr>
                         <th scope="col">NIP</th>
@@ -44,13 +44,21 @@
                                     <i class="fa fa-edit"></i> Edit
                                 </a>
                             
-                                {{-- <form action="{{ route('manager.destroy', $manager->nrp_nip) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                <form action="{{ route('manager.destroy', $manager->nrp_nip) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger" type="submit">
                                         <i class="fa fa-trash"></i> Delete
                                     </button>
-                                </form> --}}
+                                </form>
+
+                                <form action="{{ route('manager.toggleStatus', $manager->nrp_nip) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="btn btn-{{ $manager->status ? 'warning' : 'success' }} btn-sm">
+                                        {{ $manager->status ? 'Nonaktifkan' : 'Aktifkan' }}
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
