@@ -7,14 +7,14 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item">Users</li>
-                <li class="breadcrumb-item active">Dosen</li>
+                <li class="breadcrumb-item active">Manager</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Dosen</h5>
+                <h5 class="card-title">Manager</h5>
                 <a href="{{ route('manager.create') }}" class="btn btn-primary rounded-pill">
                     <i class="fa fa-plus"></i>
                     Add Data
@@ -32,19 +32,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($lecturers as $lecturer)
+                    @foreach ($managers as $manager)
                         <tr>
-                            <td>{{ $lecturer->nrp_nip }}</td> <!-- Use nrp_nip instead of id -->
-                            <td>{{ $lecturer->nama_lengkap }}</td> <!-- Use nama_lengkap instead of name -->
-                            <td>{{ $lecturer->email }}</td>
-                            <td>{{ $lecturer->prodi->nama_prodi ?? '-' }}</td>
-                            <td>{{ $lecturer->status == 1 ? 'Active' : 'Inactive' }}</td>
+                            <td>{{ $manager->nrp_nip }}</td> <!-- Use nrp_nip instead of id -->
+                            <td>{{ $manager->nama_lengkap }}</td> <!-- Use nama_lengkap instead of name -->
+                            <td>{{ $manager->email }}</td>
+                            <td>{{ $manager->prodi->nama_prodi ?? '-' }}</td>
+                            <td>{{ $manager->status == 1 ? 'Active' : 'Inactive' }}</td>
+                            <td></td>
                             <td>
-                                <a href="{{ route('manager.edit', $lecturer->nrp_nip) }}" class="btn btn-sm btn-warning">
+                                <a href="{{ route('manager.edit', $manager->nrp_nip) }}" class="btn btn-sm btn-warning">
                                     <i class="fa fa-edit"></i> Edit
                                 </a>
                             
-                                {{-- <form action="{{ route('manager.destroy', $lecturer->nrp_nip) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                {{-- <form action="{{ route('manager.destroy', $manager->nrp_nip) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-sm btn-danger" type="submit">

@@ -52,9 +52,10 @@
   
     <main id="main" class="main">
       @yield('content')
-  
-      {{-- @include('layouts.footer') --}}
     </main>
+    @yield('ExtraJS')
+</body>
+
 </body>
 
 </html>

@@ -28,6 +28,13 @@
             </a>
           </li>
         </ul>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ route('manager.manager') }}">
+              <i class="bi bi-circle"></i><span>Manager</span>
+            </a>
+          </li>
+        </ul>
       </li>
       <!-- User Nav -->
 

@@ -12,5 +12,25 @@ class Users extends Model
     protected $keyType = 'string';
     public $timestamps = false;
 
-    protected $fillable = ['nrp_nip', 'nama_lengkap', 'email', 'password', 'role'];
+    protected $fillable = [
+        'nrp_nip',
+        'password',
+        'nama_lengkap',
+        'email',
+        'status',
+        'role_id',
+        'prodi_id'
+    ];
+
+    // Relasi ke Role
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    // Relasi ke Prodi
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_id');
+    }
 }

@@ -1,13 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ManagerController;
-
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('dash');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -23,8 +21,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index'); // Main Manager Dashboard
 Route::get('/manager/student', [ManagerController::class, 'showStudent'])->name('manager.student');
 Route::get('/manager/lecturer', [ManagerController::class, 'showLecturer'])->name('manager.lecturer');
+Route::get('/manager/manager', [ManagerController::class, 'showManager'])->name('manager.manager');
 Route::get('/manager/create', [ManagerController::class, 'create'])->name('manager.create');
 Route::post('/manager/create', [ManagerController::class, 'store'])->name('manager.store');
+Route::get('/manager/{id}/edit', [ManagerController::class, 'edit'])->name('manager.edit');
+Route::put('/manager/{id}', [ManagerController::class, 'update'])->name('manager.update');
+
+
 
 require __DIR__.'/auth.php';
-
