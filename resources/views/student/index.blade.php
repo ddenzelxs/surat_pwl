@@ -28,8 +28,8 @@
             <tbody>
                 @foreach ($students as $student)
                     <tr>
-                        <td>{{ $student->nrp_nip }}</td> <!-- Use nrp_nip instead of id -->
-                        <td>{{ $student->nama_lengkap }}</td> <!-- Use nama_lengkap instead of name -->
+                        <td>{{ $student->nrp_nip }}</td>
+                        <td>{{ $student->nama_lengkap }}</td>
                         <td>{{ $student->email }}</td>
                         <td>{{ $student->status == 1 ? 'Active' : 'Inactive' }}</td>
                         <td></td>

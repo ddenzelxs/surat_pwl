@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Users extends Model
+class Users extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = 'users';
     protected $primaryKey = 'nrp_nip';
     public $incrementing = false;
@@ -20,6 +23,11 @@ class Users extends Model
         'status',
         'role_id',
         'prodi_id'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     // Relasi ke Role

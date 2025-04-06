@@ -11,7 +11,7 @@ class RoleSeeder extends Seeder
     {
         DB::connection('mysql')->table('role')->insert([
             ['id' => 1, 'nama_role' => 'Mahasiswa'],
-            ['id' => 2, 'nama_role' => 'Kaprodi'],
+            ['id' => 2, 'nama_role' => 'Kepala Program Studi'],
             ['id' => 3, 'nama_role' => 'Manajer Operasional'],
         ]);
     }

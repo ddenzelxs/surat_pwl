@@ -51,6 +51,14 @@
                                         <i class="fa fa-trash"></i> Delete
                                     </button>
                                 </form>
+
+                                <form action="{{ route('manager.toggleStatus', $lecturer->nrp_nip) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="btn btn-{{ $lecturer->status ? 'warning' : 'success' }} btn-sm">
+                                        {{ $lecturer->status ? 'Nonaktifkan' : 'Aktifkan' }}
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
