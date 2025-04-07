@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('lhs', function (Blueprint $table) {
             $table->integer('id');
-            $table->string('nrp', 20)->index('nrp');
+            $table->string('nrp_nip', 20)->index('nrp');
             $table->string('nama_lengkap', 100);
             $table->text('keperluan_pembuatan_laporan')->nullable();
+            $table->string('pdf_file')->nullable();
             $table->integer('status')->nullable()->default(0);
 
-            $table->primary(['id', 'nrp']);
+            $table->primary(['id', 'nrp_nip']);
         });
     }
 

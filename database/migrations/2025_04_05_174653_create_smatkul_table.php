@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('smatkul', function (Blueprint $table) {
             $table->integer('id');
-            $table->string('nrp', 20)->index('fk_smatkul_users1_idx');
+            $table->string('nrp_nip', 20)->index('fk_smatkul_users1_idx');
             $table->string('surat_tujuan');
             $table->string('nama_mata_kuliah', 100);
             $table->string('kode_mata_kuliah', 20);
@@ -21,9 +21,10 @@ return new class extends Migration
             $table->text('mahasiswa_data')->nullable();
             $table->text('tujuan')->nullable();
             $table->text('topik')->nullable();
+            $table->string('pdf_file')->nullable();
             $table->integer('status')->nullable()->default(0);
 
-            $table->primary(['id', 'nrp']);
+            $table->primary(['id', 'nrp_nip']);
         });
     }
 

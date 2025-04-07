@@ -107,19 +107,6 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `suratpwl`.`role`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `suratpwl`.`role` ;
-
-CREATE TABLE IF NOT EXISTS `suratpwl`.`role` (
-  `id` INT(2) NOT NULL,
-  `nama_role` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `suratpwl`.`prodi`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `suratpwl`.`prodi` ;
@@ -127,6 +114,19 @@ DROP TABLE IF EXISTS `suratpwl`.`prodi` ;
 CREATE TABLE IF NOT EXISTS `suratpwl`.`prodi` (
   `id` INT(2) NOT NULL,
   `nama_prodi` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `suratpwl`.`role`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `suratpwl`.`role` ;
+
+CREATE TABLE IF NOT EXISTS `suratpwl`.`role` (
+  `id` INT(2) NOT NULL,
+  `nama_role` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -142,20 +142,20 @@ CREATE TABLE IF NOT EXISTS `suratpwl`.`users` (
   `password` VARCHAR(255) NOT NULL,
   `nama_lengkap` VARCHAR(100) NOT NULL,
   `email` VARCHAR(100) NULL DEFAULT NULL,
-  `status` INT(1) NULL DEFAULT NULL,
-  `role_id` INT(2) NOT NULL,
+  `status` INT(2) NULL DEFAULT NULL,
   `prodi_id` INT(2) NOT NULL,
-  PRIMARY KEY (`nrp_nip`),
-  INDEX `fk_users_role1_idx` (`role_id` ASC),
+  `role_id` INT(2) NOT NULL,
+  PRIMARY KEY (`nrp_nip`, `prodi_id`, `role_id`),
   INDEX `fk_users_prodi1_idx` (`prodi_id` ASC),
-  CONSTRAINT `fk_users_role1`
-    FOREIGN KEY (`role_id`)
-    REFERENCES `suratpwl`.`role` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_users_role1_idx` (`role_id` ASC),
   CONSTRAINT `fk_users_prodi1`
     FOREIGN KEY (`prodi_id`)
     REFERENCES `suratpwl`.`prodi` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_role1`
+    FOREIGN KEY (`role_id`)
+    REFERENCES `suratpwl`.`role` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -168,15 +168,16 @@ DEFAULT CHARACTER SET = utf8mb4;
 DROP TABLE IF EXISTS `suratpwl`.`lhs` ;
 
 CREATE TABLE IF NOT EXISTS `suratpwl`.`lhs` (
-  `id` INT(11) NOT NULL,
-  `nrp` VARCHAR(20) NOT NULL,
+  `id` INT(2) NOT NULL,
+  `nrp_nip` VARCHAR(20) NOT NULL,
   `nama_lengkap` VARCHAR(100) NOT NULL,
   `keperluan_pembuatan_laporan` TEXT NULL DEFAULT NULL,
+  `file_pdf` VARCHAR(255) NULL DEFAULT NULL,
   `status` INT(2) NULL DEFAULT 0,
-  PRIMARY KEY (`id`, `nrp`),
-  INDEX `nrp` (`nrp` ASC),
+  PRIMARY KEY (`id`, `nrp_nip`),
+  INDEX `nrp` (`nrp_nip` ASC),
   CONSTRAINT `lhs_ibfk_1`
-    FOREIGN KEY (`nrp`)
+    FOREIGN KEY (`nrp_nip`)
     REFERENCES `suratpwl`.`users` (`nrp_nip`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
@@ -193,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `suratpwl`.`migrations` (
   `batch` INT(11) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
@@ -239,15 +240,16 @@ COLLATE = utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `suratpwl`.`skl` ;
 
 CREATE TABLE IF NOT EXISTS `suratpwl`.`skl` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `nrp` VARCHAR(20) NOT NULL,
+  `id` INT(2) NOT NULL,
+  `nrp_nip` VARCHAR(20) NOT NULL,
   `nama_lengkap` VARCHAR(100) NOT NULL,
   `tanggal_lulus` DATE NOT NULL,
+  `file_pdf` VARCHAR(255) NULL DEFAULT NULL,
   `status` INT(2) NULL DEFAULT 0,
-  PRIMARY KEY (`id`, `nrp`),
-  INDEX `nrp` (`nrp` ASC),
+  PRIMARY KEY (`id`, `nrp_nip`),
+  INDEX `nrp` (`nrp_nip` ASC),
   CONSTRAINT `skl_ibfk_1`
-    FOREIGN KEY (`nrp`)
+    FOREIGN KEY (`nrp_nip`)
     REFERENCES `suratpwl`.`users` (`nrp_nip`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
@@ -259,17 +261,18 @@ DEFAULT CHARACTER SET = utf8mb4;
 DROP TABLE IF EXISTS `suratpwl`.`smahaktif` ;
 
 CREATE TABLE IF NOT EXISTS `suratpwl`.`smahaktif` (
-  `id` INT(11) NOT NULL,
-  `nrp` VARCHAR(20) NOT NULL,
+  `id` INT(2) NOT NULL,
+  `nrp_nip` VARCHAR(20) NOT NULL,
   `nama_lengkap` VARCHAR(100) NOT NULL,
   `semester` INT(11) NOT NULL,
   `alamat` TEXT NULL DEFAULT NULL,
   `keperluan_pengajuan` TEXT NULL DEFAULT NULL,
+  `file_pdf` VARCHAR(255) NULL DEFAULT NULL,
   `status` INT(2) NULL DEFAULT 0,
-  PRIMARY KEY (`id`, `nrp`),
-  INDEX `nrp` (`nrp` ASC),
+  PRIMARY KEY (`id`, `nrp_nip`),
+  INDEX `nrp` (`nrp_nip` ASC),
   CONSTRAINT `smahaktif_ibfk_1`
-    FOREIGN KEY (`nrp`)
+    FOREIGN KEY (`nrp_nip`)
     REFERENCES `suratpwl`.`users` (`nrp_nip`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
@@ -281,8 +284,8 @@ DEFAULT CHARACTER SET = utf8mb4;
 DROP TABLE IF EXISTS `suratpwl`.`smatkul` ;
 
 CREATE TABLE IF NOT EXISTS `suratpwl`.`smatkul` (
-  `id` INT(11) NOT NULL,
-  `nrp` VARCHAR(20) NOT NULL,
+  `id` INT(2) NOT NULL,
+  `nrp_nip` VARCHAR(20) NOT NULL,
   `surat_tujuan` VARCHAR(255) NOT NULL,
   `nama_mata_kuliah` VARCHAR(100) NOT NULL,
   `kode_mata_kuliah` VARCHAR(20) NOT NULL,
@@ -290,11 +293,12 @@ CREATE TABLE IF NOT EXISTS `suratpwl`.`smatkul` (
   `mahasiswa_data` TEXT NULL DEFAULT NULL,
   `tujuan` TEXT NULL DEFAULT NULL,
   `topik` TEXT NULL DEFAULT NULL,
+  `file_pdf` VARCHAR(255) NULL,
   `status` INT(2) NULL DEFAULT 0,
-  PRIMARY KEY (`id`, `nrp`),
-  INDEX `fk_smatkul_users1_idx` (`nrp` ASC),
+  PRIMARY KEY (`id`, `nrp_nip`),
+  INDEX `fk_smatkul_users1_idx` (`nrp_nip` ASC),
   CONSTRAINT `fk_smatkul_users1`
-    FOREIGN KEY (`nrp`)
+    FOREIGN KEY (`nrp_nip`)
     REFERENCES `suratpwl`.`users` (`nrp_nip`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
