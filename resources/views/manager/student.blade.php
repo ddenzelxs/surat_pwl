@@ -40,26 +40,29 @@
                             <td>{{ $student->prodi->nama_prodi ?? '-' }}</td>
                             <td>{{ $student->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td>
-                              <a href="{{ route('manager.edit', $student->nrp_nip) }}" class="btn btn-sm btn-warning">
-                                  <i class="fa fa-edit"></i> Edit
-                              </a>
-                          
-                              <form action="{{ route('manager.destroy', $student->nrp_nip) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                                  @csrf
-                                  @method('DELETE')
-                                  <button class="btn btn-sm btn-danger" type="submit">
-                                      <i class="fa fa-trash"></i> Delete
-                                  </button>
-                              </form>
+                                <a href="{{ route('manager.edit', $student->nrp_nip) }}" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
 
-                              <form action="{{ route('manager.toggleStatus', $student->nrp_nip) }}" method="POST" style="display:inline-block;">
-                                @csrf
-                                @method('PATCH')
-                                <button type="submit" class="btn btn-{{ $student->status ? 'warning' : 'success' }} btn-sm">
-                                    {{ $student->status ? 'Nonaktifkan' : 'Aktifkan' }}
-                                </button>
-                            </form>
-                          </td>
+                                <form action="{{ route('manager.destroy', $student->nrp_nip) }}" method="POST"
+                                    class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger" type="submit">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </button>
+                                </form>
+
+                                <form action="{{ route('manager.toggleStatus', $student->nrp_nip) }}" method="POST"
+                                    style="display:inline-block;">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit"
+                                        class="btn btn-{{ $student->status ? 'warning' : 'success' }} btn-sm">
+                                        {{ $student->status ? 'Nonaktifkan' : 'Aktifkan' }}
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

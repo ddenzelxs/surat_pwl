@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mb-4">Daftar Pengajuan Laporan Hasil Studi</h1>
+        <h1 class="mb-4">Daftar Pengajuan Surat Keterangan Lulus</h1>
         <table class="table datatable">
             <thead>
                 <tr>
@@ -14,24 +14,24 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($lhsList as $lhs)
+                @foreach ($sklList as $skl)
                     <tr>
-                        <td>{{ $lhs->nrp_nip }}</td>
-                        <td>{{ $lhs->nama_lengkap }}</td>
-                        <td>{{ $lhs->keperluan_pembuatan_laporan }}</td>
+                        <td>{{ $skl->nrp_nip }}</td>
+                        <td>{{ $skl->nama_lengkap }}</td>
+                        <td>{{ $skl->keperluan_pembuatan_laporan }}</td>
                         <td>
-                            @if ($lhs->status == 0)
+                            @if ($skl->status == 0)
                                 <span class="badge bg-warning text-dark">Menunggu</span>
-                            @elseif ($lhs->status == 1)
+                            @elseif ($skl->status == 1)
                                 <span class="badge bg-success">Disetujui</span>
-                            @elseif ($lhs->status == 2)
+                            @elseif ($skl->status == 2)
                                 <span class="badge bg-danger">Ditolak</span>
                             @else
                                 <span class="badge bg-primary">Selesai</span>
                             @endif
                         </td>
                         <td>
-                            <form action="{{ route('manager.lhs.sendPdf', $lhs->id) }}" method="POST"
+                            <form action="{{ route('manager.skl.sendPdf', $skl->id) }}" method="POST"
                                 enctype="multipart/form-data" class="d-inline">
                                 @csrf
                                 @method('PUT')

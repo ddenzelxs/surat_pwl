@@ -13,7 +13,7 @@ class Lhs extends Model
 
     public $timestamps = false; // karena tidak ada kolom created_at / updated_at
 
-    protected $primaryKey = ['id', 'nrp_nip']; // composite primary key (manual handling)
+    protected $primaryKey = 'id'; // composite primary key (manual handling)
     public $incrementing = false; // karena id bukan auto-increment
 
     protected $keyType = 'string'; // karena salah satu primary key (nrp_nip) string

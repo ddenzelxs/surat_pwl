@@ -12,14 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lhs', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->primary();
             $table->string('nrp_nip', 20)->index('nrp');
             $table->string('nama_lengkap', 100);
             $table->text('keperluan_pembuatan_laporan')->nullable();
             $table->string('pdf_file')->nullable();
             $table->integer('status')->nullable()->default(0);
-
-            $table->primary(['id', 'nrp_nip']);
         });
     }
 

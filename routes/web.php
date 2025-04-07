@@ -6,7 +6,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\LhsController;
+use App\Http\Controllers\SklController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,17 +24,36 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Mahasiswa
     Route::middleware([RoleMiddleware::class . ':1'])->group(function () {
         Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+        // Laporan Hasil studi
+        Route::get('/student/lhs', [LhsController::class, 'index'])->name('student.lhs.index');
+        Route::get('/student/lhs/create', [LhsController::class, 'create'])->name('student.lhs.create');
+        Route::post('/student/lhs/create', [LhsController::class, 'store'])->name('student.lhs.store');
+        // Surat Keterangan Lulus
+        Route::get('/student/skl', [SklController::class, 'index'])->name('student.skl.index');
+        Route::get('/student/skl/create', [SklController::class, 'create'])->name('student.skl.create');
+        Route::post('/student/skl/create', [SklController::class, 'store'])->name('student.skl.store');
 
-        Route::get('/student/lhs', [LhsController::class, 'create'])->name('student.lhs.create');
-        Route::post('/student/lhs', [LhsController::class, 'store'])->name('student.lhs.store');
     });
 
+    // Kepala Program Studi
     Route::middleware([RoleMiddleware::class . ':2'])->group(function (): void {
-        Route::get('/lecturer', [StudentController::class, 'index'])->name('lecturer.index');
+        Route::get('/lecturer', [LecturerController::class, 'index'])->name('lecturer.index');
+        // Laporan Hasil Studi
+        Route::get('/lecturer/lhs', [LhsController::class, 'index'])->name('lecturer.lhs.index');
+        Route::put('/lhs/approve/{id}', [LhsController::class, 'approve'])->name('lhs.approve');
+        Route::put('/lhs/reject/{id}', [LhsController::class, 'reject'])->name('lhs.reject');
+        // Surat Keterangan Lulus
+        Route::get('/lecturer/skl', [SklController::class, 'index'])->name('lecturer.skl.index');
+        Route::put('/skl/approve/{id}', [SklController::class, 'approve'])->name('skl.approve');
+        Route::put('/skl/reject/{id}', [SklController::class, 'reject'])->name('skl.reject');
+
+
     });
 
+    // Manager Operasional
     Route::middleware([RoleMiddleware::class . ':3'])->group(function () {
         Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
         Route::get('/manager/student', [ManagerController::class, 'showStudent'])->name('manager.student');
@@ -44,8 +65,12 @@ Route::middleware('auth')->group(function () {
         Route::put('/manager/{id}', [ManagerController::class, 'update'])->name('manager.update');
         Route::delete('/manager/{id}', [ManagerController::class, 'destroy'])->name('manager.destroy');
         Route::patch('/manager/{id}/toggle-status', [ManagerController::class, 'toggleStatus'])->name('manager.toggleStatus');
+        // Laporan Hasil Studi
         Route::get('/manager/lhs', [LhsController::class, 'index'])->name('manager.lhs.index');
-
+        Route::put('/manager/lhs/{id}/send-pdf', [LhsController::class, 'sendPdf'])->name('manager.lhs.sendPdf');
+        // Surat Keterangan Lulus
+        Route::get('/manager/skl', [SklController::class, 'index'])->name('manager.skl.index');
+        Route::put('/manager/skl/{id}/send-pdf', [SklController::class, 'sendPdf'])->name('manager.skl.sendPdf');
     });
 
 });

@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('manager.skl.index') }}">
                         <i class="bi bi-circle"></i><span>Surat Keterangan Lulus</span>
                     </a>
                 </li>

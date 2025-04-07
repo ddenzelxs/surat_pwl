@@ -27,7 +27,10 @@ class LhsController extends Controller
         }
         // Manager Operasional
         elseif ($user->role_id == 3) {
-            $lhsList = Lhs::where('status', 1)->get();
+            $lhsList = lhs::where('status', 1)
+                ->whereHas('user', function ($query) use ($user) {
+                    $query->where('prodi_id', $user->prodi_id);
+                })->get();
             return view('manager.lhs.index', compact('lhsList'));
         }
         // Role lain
@@ -35,12 +38,13 @@ class LhsController extends Controller
             abort(403, 'Akses ditolak.');
         }
 
-        
+
     }
 
+    // Mahasiswa
     public function create()
     {
-        return view('student.lhs.index');
+        return view('student.lhs.create');
     }
 
     public function store(Request $request)
@@ -56,9 +60,50 @@ class LhsController extends Controller
             'nrp_nip' => $user->nrp_nip,
             'nama_lengkap' => $user->nama_lengkap,
             'keperluan_pembuatan_laporan' => $request->keperluan_pembuatan_laporan,
-            'status' => 0, 
+            'status' => 0,
         ]);
 
         return redirect()->route('student.index')->with('status', 'Form berhasil diajukan');
     }
+
+    // Kepala Program Studi
+    public function approve($id)
+    {
+        $lhs = Lhs::findOrFail($id);
+        $lhs->status = 1;
+        $lhs->save();
+
+        return redirect()->back()->with('status', 'Laporan Hasil Studi berhasil disetujui.');
+    }
+
+    public function reject($id)
+    {
+        $lhs = Lhs::findOrFail($id);
+        $lhs->status = 2;
+        $lhs->save();
+
+        return redirect()->back()->with('status', 'Laporan Hasil Studi berhasil ditolak.');
+    }
+
+    // Manajer Operasional
+    public function sendPdf(Request $request, $id)
+    {
+        $request->validate([
+            'pdf_file' => 'required|mimes:pdf|max:2048',
+        ]);
+
+        $lhs = Lhs::findOrFail($id);
+
+        // Simpan file
+        $pdfPath = $request->file('pdf_file')->store('pdfs/lhs', 'public');
+
+        // Update data
+        $lhs->pdf_file = $pdfPath;
+        $lhs->status = 3;
+        $lhs->save();
+
+        return redirect()->back()->with('success', 'PDF berhasil dikirim!');
+    }
+
+
 }

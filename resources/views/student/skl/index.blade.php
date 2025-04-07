@@ -2,9 +2,9 @@
 
 
 @section('content')
-    {{-- Tabel daftar LHS --}}
+    {{-- Tabel daftar skl --}}
     <div class="mb-3">
-        <a href="{{ route('student.lhs.create') }}" class="btn btn-primary">Ajukan LHS</a>
+        <a href="{{ route('student.skl.create') }}" class="btn btn-primary">Ajukan Surat Keterangan Lulus</a>
     </div>
 
     <div class="table-responsive">
@@ -19,17 +19,17 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($lhsList as $index => $lhs)
+                @forelse ($sklList as $index => $skl)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $lhs->nama_lengkap }}</td>
-                        <td>{{ $lhs->keperluan_pembuatan_laporan }}</td>
+                        <td>{{ $skl->nama_lengkap }}</td>
+                        <td>{{ $skl->keperluan_pembuatan_laporan }}</td>
                         <td>
-                            @if ($lhs->status == 0)
+                            @if ($skl->status == 0)
                                 <span class="badge bg-warning text-dark">Pending</span>
-                            @elseif ($lhs->status == 1)
+                            @elseif ($skl->status == 1)
                                 <span class="badge bg-success">Disetujui</span>
-                            @elseif ($lhs->status == 2)
+                            @elseif ($skl->status == 2)
                                 <span class="badge bg-danger">Ditolak</span>
                             @else
                                 <span class="badge bg-primary">Selesai</span>
@@ -37,8 +37,8 @@
 
                         </td>
                         <td>
-                            @if ($lhs->pdf_file)
-                                <a href="{{ asset('storage/' . $lhs->pdf_file) }}" target="_blank">Lihat File</a>
+                            @if ($skl->pdf_file)
+                                <a href="{{ asset('storage/' . $skl->pdf_file) }}" target="_blank">Lihat File</a>
                             @else
                                 <em>Belum tersedia</em>
                             @endif
@@ -46,7 +46,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center">Belum ada pengajuan LHS</td>
+                        <td colspan="5" class="text-center">Belum ada pengajuan skl</td>
                     </tr>
                 @endforelse
             </tbody>

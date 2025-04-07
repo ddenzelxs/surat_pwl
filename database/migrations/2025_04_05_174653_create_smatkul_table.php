@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('smatkul', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->primary();
             $table->string('nrp_nip', 20)->index('fk_smatkul_users1_idx');
             $table->string('surat_tujuan');
             $table->string('nama_mata_kuliah', 100);
@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('pdf_file')->nullable();
             $table->integer('status')->nullable()->default(0);
 
-            $table->primary(['id', 'nrp_nip']);
         });
     }
 
