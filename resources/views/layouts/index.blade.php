@@ -29,7 +29,6 @@
 
     @include('layouts.header')
 
-    @include('layouts.sidebar')
     {{-- layouts/sidebar.blade.php --}}
     @php
         $role = auth()->user()->role_id;

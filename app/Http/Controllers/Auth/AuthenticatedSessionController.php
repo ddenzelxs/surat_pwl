@@ -34,11 +34,11 @@ class AuthenticatedSessionController extends Controller
             // Redirect by role_id
             switch ($user->role_id) {
                 case 1:
-                    return redirect()->route('student.index');
+                    return redirect()->intended(route('student.index'));
                 case 2:
-                    return redirect()->route('lecturer.index');
+                    return redirect()->intended(route('lecturer.index'));
                 case 3:
-                    return redirect()->route('manager.index');
+                    return redirect()->intended(route('manager.index'));
                 default:
                     Auth::logout();
                     return redirect()->route('login')->with('error', 'Role tidak dikenali.');
