@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,7 @@ Route::put('/manager/{id}', [ManagerController::class, 'update'])->name('manager
 Route::delete('/manager/{id}', [ManagerController::class, 'destroy'])->name('manager.destroy');
 Route::patch('/manager/{id}/toggle-status', [ManagerController::class, 'toggleStatus'])->name('manager.toggleStatus');
 
-Route::post('/auth/register', [RegisteredUserController::class, 'store'])->name('register.store');
 Route::get('/auth/register', [RegisteredUserController::class, 'create'])->name('register.create');
+Route::post('/auth/register', [RegisteredUserController::class, 'store'])->name('register.store');
 
 require __DIR__.'/auth.php';

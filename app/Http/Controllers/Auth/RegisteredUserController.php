@@ -52,6 +52,6 @@ class RegisteredUserController extends Controller
 
         $user->save();
 
-        return redirect()->route('auth.login');
+        return redirect('login');
     }
 }
