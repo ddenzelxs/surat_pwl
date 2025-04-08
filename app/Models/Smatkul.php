@@ -12,6 +12,7 @@ class Smatkul extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id',
         'nrp_nip',
         'surat_tujuan',
         'nama_mata_kuliah',
@@ -26,6 +27,6 @@ class Smatkul extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'nrp_nip', 'username');
+        return $this->belongsTo(User::class, 'nrp_nip', 'nrp_nip');
     }
 }

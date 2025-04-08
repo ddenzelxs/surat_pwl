@@ -41,6 +41,7 @@
     @elseif ($role == 3)
         @include('layouts.manager.sidebar')
     @endif
+    
     <main id="main" class="main">
         @yield('content')
     </main>

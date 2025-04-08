@@ -50,7 +50,8 @@ class SmatkulController extends Controller
         ]);
 
         Smatkul::create([
-            'nrp_nip' => Auth::user()->username,
+            'id' => time(),
+            'nrp_nip' => Auth::user()->nrp_nip,
             'surat_tujuan' => $request->surat_tujuan,
             'nama_mata_kuliah' => $request->nama_mata_kuliah,
             'kode_mata_kuliah' => $request->kode_mata_kuliah,

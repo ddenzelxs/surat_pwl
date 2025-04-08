@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="mb-4">Pengajuan Surat Keterangan Mata Kuliah yang telah disetujui</h1>
-    <table class="table table-bordered">
+    <table class="table datatable">
         <thead>
             <tr>
                 <th>No</th>
@@ -15,29 +15,29 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($smatkuls as $item)
+            @foreach ($smatkulList as $smatkul)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->nrp_nip }}</td>
-                    <td>{{ $item->nama_mata_kuliah }}</td>
-                    <td>{{ $item->semester }}</td>
+                    <td>{{ $smatkul->nrp_nip }}</td>
+                    <td>{{ $smatkul->nama_mata_kuliah }}</td>
+                    <td>{{ $smatkul->semester }}</td>
                     <td>
-                        @if ($item->status === 1)
+                        @if ($smatkul->status === 1)
                             <span class="badge bg-success">Disetujui</span>
                         @else
                             <span class="badge bg-secondary">-</span>
                         @endif
                     </td>
                     <td>
-                        @if ($item->pdf_file)
-                            <a href="{{ asset('storage/' . $item->pdf_file) }}" target="_blank">Lihat PDF</a>
+                        @if ($smatkul->pdf_file)
+                            <a href="{{ asset('storage/' . $smatkul->pdf_file) }}" target="_blank">Lihat PDF</a>
                         @else
                             <span>-</span>
                         @endif
                     </td>
                     <td>
-                        @if ($item->status === 1 && !$item->pdf_file)
-                            <form action="{{ route('manager.smatkul.sendPdf', $item->id) }}" method="POST">
+                        @if ($smatkul->status === 1 && !$smatkul->pdf_file)
+                            <form action="{{ route('manager.smatkul.sendPdf', $smatkul->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <button class="btn btn-primary btn-sm">Kirim PDF</button>
