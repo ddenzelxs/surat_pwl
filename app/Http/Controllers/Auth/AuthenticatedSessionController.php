@@ -46,8 +46,8 @@ class AuthenticatedSessionController extends Controller
         }
 
         return back()->withErrors([
-            'nrp_nip' => 'NRP/NIP atau password salah.',
-        ])->onlyInput('nrp_nip');
+            'email' => 'Email atau password salah.',
+        ])->onlyInput('email');
     }
 
 
