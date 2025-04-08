@@ -21,12 +21,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('lecturer.smahaktif.index') }}">
                         <i class="bi bi-circle"></i><span>Surat Keterangan Mahasiswa Aktif</span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('lecturer.smatkul.index') }}">
                         <i class="bi bi-circle"></i><span>Surat Pengantar Tugas Mata Kuliah</span>
                     </a>
                 </li>

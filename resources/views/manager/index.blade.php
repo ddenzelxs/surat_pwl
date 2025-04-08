@@ -1,5 +1,5 @@
 @extends('layouts.index')
 
 @section('content')
-    <h1>Ini Dashboard?</h1>
+    <h1>Selamat Datang di halaman Manager</h1>
 @endsection

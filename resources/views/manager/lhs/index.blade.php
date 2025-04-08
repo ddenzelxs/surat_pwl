@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mb-4">Daftar Pengajuan Laporan Hasil Studi</h1>
+        <h1 class="mb-4">Pengajuan Laporan Hasil Studi yang telah disetujui</h1>
         <table class="table datatable">
             <thead>
                 <tr>

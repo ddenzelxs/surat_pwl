@@ -1,6 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
+<h4 class="mb-4">Verifikasi Pengajuan Surat Keterangan Lulus</h4>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead class="table-primary">
