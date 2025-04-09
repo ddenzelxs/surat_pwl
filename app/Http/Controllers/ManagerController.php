@@ -153,23 +153,6 @@ class ManagerController extends Controller
         }
     }
 
-    public function destroy($id)
-    {
-        $user = Users::findOrFail($id);
-        $user->delete();
-
-        switch ($user->role_id) {
-            case 1:
-                return redirect()->route('manager.student')->with('status', 'Data berhasil dihapus');
-            case 2:
-                return redirect()->route('manager.lecturer')->with('status', 'Data berhasil dihapus');
-            case 3:
-                return redirect()->route('manager.manager')->with('status', 'Data berhasil dihapus');
-            default:
-                return redirect()->route('manager.index')->with('status', 'Data berhasil dihapus');
-        }
-    }
-
     public function toggleStatus($id)
     {
         $user = Users::findOrFail($id);

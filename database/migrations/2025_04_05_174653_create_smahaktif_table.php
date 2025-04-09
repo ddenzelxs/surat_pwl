@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('smahaktif', function (Blueprint $table) {
             $table->integer('id')->primary();
-            $table->string('nrp_nip', 20)->index('nrp');
+            $table->string('nrp_nip', 20)->index();
             $table->string('nama_lengkap', 100);
             $table->integer('semester');
             $table->text('alamat')->nullable();

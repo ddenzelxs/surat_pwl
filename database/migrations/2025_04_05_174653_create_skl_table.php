@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('skl', function (Blueprint $table) {
-            $table->integer('id', true)->primary();
-            $table->string('nrp_nip', 20)->index('nrp');
+            $table->integer('id')->primary();
+            $table->string('nrp_nip', 20)->index();
             $table->string('nama_lengkap', 100);
             $table->date('tanggal_lulus');
             $table->string('pdf_file')->nullable();

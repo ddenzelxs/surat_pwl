@@ -43,21 +43,15 @@
                                 <a href="{{ route('manager.edit', $manager->nrp_nip) }}" class="btn btn-sm btn-warning">
                                     <i class="fa fa-edit"></i> Edit
                                 </a>
-                            
-                                <form action="{{ route('manager.destroy', $manager->nrp_nip) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger" type="submit">
-                                        <i class="fa fa-trash"></i> Delete
-                                    </button>
-                                </form>
 
                                 <form action="{{ route('manager.toggleStatus', $manager->nrp_nip) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="btn btn-{{ $manager->status ? 'warning' : 'success' }} btn-sm">
+                                    <button type="submit" class="btn btn-sm {{ $manager->status ? 'btn-outline-danger' : 'btn-outline-success' }}">
+                                        <i class="bi {{ $manager->status ? 'bi-toggle-off' : 'bi-toggle-on' }}"></i>
                                         {{ $manager->status ? 'Nonaktifkan' : 'Aktifkan' }}
                                     </button>
+                                    
                                 </form>
                             </td>
                         </tr>

@@ -78,7 +78,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/manager/create', [ManagerController::class, 'store'])->name('manager.store');
         Route::get('/manager/{id}/edit', [ManagerController::class, 'edit'])->name('manager.edit');
         Route::put('/manager/{id}', [ManagerController::class, 'update'])->name('manager.update');
-        Route::delete('/manager/{id}', [ManagerController::class, 'destroy'])->name('manager.destroy');
         Route::patch('/manager/{id}/toggle-status', [ManagerController::class, 'toggleStatus'])->name('manager.toggleStatus');
         // Laporan Hasil Studi
         Route::get('/manager/lhs', [LhsController::class, 'index'])->name('manager.lhs.index');
