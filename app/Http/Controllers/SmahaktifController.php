@@ -21,10 +21,9 @@ class SmahaktifController extends Controller
             })->get();
             return view('lecturer.smahaktif.index', compact('smahaktifList'));
         } elseif ($user->role_id == 3) {
-            $smahaktifList = Smahaktif::where('status', 1)
-                ->whereHas('user', function ($q) use ($user) {
-                    $q->where('prodi_id', $user->prodi_id);
-                })->get();
+            $smahaktifList = Smahaktif::whereHas('user', function ($q) use ($user) {
+                $q->where('prodi_id', $user->prodi_id);
+            })->get();
             return view('manager.smahaktif.index', compact('smahaktifList'));
         }
 

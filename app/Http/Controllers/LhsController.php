@@ -27,18 +27,15 @@ class LhsController extends Controller
         }
         // Manager Operasional
         elseif ($user->role_id == 3) {
-            $lhsList = lhs::where('status', 1)
-                ->whereHas('user', function ($query) use ($user) {
-                    $query->where('prodi_id', $user->prodi_id);
-                })->get();
+            $lhsList = Lhs::whereHas('user', function ($query) use ($user) {
+                $query->where('prodi_id', $user->prodi_id);
+            })->get();
             return view('manager.lhs.index', compact('lhsList'));
         }
         // Role lain
         else {
             abort(403, 'Akses ditolak.');
         }
-
-
     }
 
     // Mahasiswa
@@ -104,6 +101,4 @@ class LhsController extends Controller
 
         return redirect()->back()->with('success', 'PDF berhasil dikirim!');
     }
-
-
 }

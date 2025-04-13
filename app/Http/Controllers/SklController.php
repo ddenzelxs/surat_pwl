@@ -23,10 +23,9 @@ class SklController extends Controller
             return view('lecturer.skl.index', compact('sklList'));
         // Manajer Operasional
         } elseif ($user->role_id == 3) {
-            $sklList = Skl::where('status', 1)
-                ->whereHas('user', function ($query) use ($user) {
-                    $query->where('prodi_id', $user->prodi_id);
-                })->get();
+            $sklList = Skl::whereHas('user', function ($query) use ($user) {
+                $query->where('prodi_id', $user->prodi_id);
+            })->get();  
             return view('manager.skl.index', compact('sklList'));
         } else {
             abort(403, 'Akses ditolak.');

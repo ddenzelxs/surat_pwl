@@ -23,10 +23,9 @@ class SmatkulController extends Controller
             })->get();
             return view('lecturer.smatkul.index', compact('smatkulList'));
         } elseif ($user->role_id == 3) {
-            $smatkulList = Smatkul::where('status', 1)
-                ->whereHas('user', function ($q) use ($user) {
-                    $q->where('prodi_id', $user->prodi_id);
-                })->get();
+            $smatkulList = Smatkul::whereHas('user', function ($q) use ($user) {
+                $q->where('prodi_id', $user->prodi_id);
+            })->get();
             return view('manager.smatkul.index', compact('smatkulList'));
         }
 
