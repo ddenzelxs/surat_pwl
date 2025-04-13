@@ -1,7 +1,7 @@
-<header id="header" class="header fixed-top d-flex align-items-center margin-10">
+<header id="header" class="header fixed-top d-flex align-items-center" style="z-index: 1020;">
 
     <div class="d-flex align-items-center justify-content-between">
-        <img src="{{ asset('assets/img/logo.png') }} " alt="logo" style="width: 235px; height: auto;">
+        <img src="{{ asset('assets/img/logo.png') }} " alt="logo" style="width: 200px; height: auto;">
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 

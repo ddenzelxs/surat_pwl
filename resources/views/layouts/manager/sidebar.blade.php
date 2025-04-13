@@ -1,4 +1,4 @@
-<aside id="sidebar" class="sidebar collapsed">
+<aside id="sidebar" class="sidebar collapsed" style="z-index: 1030;">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
