@@ -38,6 +38,16 @@ class UserSeeder extends Seeder
                 'prodi_id' => 3,
                 'role_id' => 3, 
             ],
+
+            [
+                'nrp_nip' => '0000004',
+                'password' => Hash::make('password123'),
+                'nama_lengkap' => 'Dummy Admin',
+                'email' => 'admin@example.com',
+                'status' => 1,
+                'prodi_id' => 3,
+                'role_id' => 4, 
+            ],
         ]);
     }
 }

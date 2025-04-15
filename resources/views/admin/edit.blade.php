@@ -5,7 +5,7 @@
         <div class="card-body">
             <h5 class="card-title">Edit User</h5>
 
-            <form class="row g-3" action="{{ route('manager.update', $user->nrp_nip) }}" method="POST">
+            <form class="row g-3" action="{{ route('admin.update', $user->nrp_nip) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -55,7 +55,7 @@
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-success">Update</button>
-                    <a href="{{ route('manager.index') }}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{ route('admin.index') }}" class="btn btn-secondary">Kembali</a>
                 </div>
             </form>
         </div>

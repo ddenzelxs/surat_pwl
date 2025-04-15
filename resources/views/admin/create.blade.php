@@ -5,7 +5,7 @@
         <div class="card-body">
             <h5 class="card-title">Form</h5>
 
-            <form class="row g-3" action="{{ route('manager.store') }}" method="POST">
+            <form class="row g-3" action="{{ route('admin.store') }}" method="POST">
                 @csrf
                 <div class="col-12">
                     <label for="nrp_nip" class="form-label">NIP</label>

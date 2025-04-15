@@ -40,6 +40,8 @@
         @include('layouts.lecturer.sidebar')
     @elseif ($role == 3)
         @include('layouts.manager.sidebar')
+    @elseif ($role == 4)
+        @include('layouts.admin.sidebar')
     @endif
     
     <main id="main" class="main">

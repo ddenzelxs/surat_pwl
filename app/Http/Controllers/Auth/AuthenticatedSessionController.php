@@ -39,6 +39,8 @@ class AuthenticatedSessionController extends Controller
                     return redirect()->intended(route('lecturer.index'));
                 case 3:
                     return redirect()->intended(route('manager.index'));
+                case 4:
+                    return redirect()->intended(route('admin.index'));
                 default:
                     Auth::logout();
                     return redirect()->route('login')->with('error', 'Role tidak dikenali.');

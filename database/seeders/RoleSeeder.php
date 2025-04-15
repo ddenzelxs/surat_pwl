@@ -13,6 +13,7 @@ class RoleSeeder extends Seeder
             ['id' => 1, 'nama_role' => 'Mahasiswa'],
             ['id' => 2, 'nama_role' => 'Kepala Program Studi'],
             ['id' => 3, 'nama_role' => 'Manajer Operasional'],
+            ['id' => 4, 'nama_role' => 'Admin'],
         ]);
     }
 }

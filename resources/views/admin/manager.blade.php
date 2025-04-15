@@ -15,6 +15,10 @@
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
                 <h5 class="card-title">Manager</h5>
+                <a href="{{ route('admin.create') }}" class="btn btn-primary rounded-pill">
+                    <i class="fa fa-plus"></i>
+                    Add Data
+                </a>
             </div>
             <table class="table datatable">
                 <thead>
@@ -24,6 +28,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">Program Studi</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +39,21 @@
                             <td>{{ $manager->email }}</td>
                             <td>{{ $manager->prodi->nama_prodi ?? '-' }}</td>
                             <td>{{ $manager->status == 1 ? 'Active' : 'Inactive' }}</td>
+                            <td>
+                                <a href="{{ route('admin.edit', $manager->nrp_nip) }}" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+
+                                <form action="{{ route('admin.toggleStatus', $manager->nrp_nip) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="btn btn-sm {{ $manager->status ? 'btn-outline-danger' : 'btn-outline-success' }}">
+                                        <i class="bi {{ $manager->status ? 'bi-toggle-off' : 'bi-toggle-on' }}"></i>
+                                        {{ $manager->status ? 'Nonaktifkan' : 'Aktifkan' }}
+                                    </button>
+                                    
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
