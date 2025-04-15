@@ -2,20 +2,22 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mb-4">Pengajuan Laporan Hasil Studi yang telah disetujui</h1>
+        <h4 class="mb-4">Pengajuan Laporan Hasil Studi</h4>
         <table class="table datatable">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>NRP</th>
                     <th>Nama Mahasiswa</th>
                     <th>Keperluan Pembuatan Laporan</th>
                     <th>Status</th>
-                    <th>Aksi</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($lhsList as $lhs)
+                @foreach ($lhsList as $index => $lhs)
                     <tr>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $lhs->nrp_nip }}</td>
                         <td>{{ $lhs->nama_lengkap }}</td>
                         <td>{{ $lhs->keperluan_pembuatan_laporan }}</td>

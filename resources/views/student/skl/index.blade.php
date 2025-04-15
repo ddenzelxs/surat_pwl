@@ -1,15 +1,12 @@
 @extends('layouts.index')
 
-
 @section('content')
-    {{-- Tabel daftar skl --}}
-    <div class="mb-3">
-        <a href="{{ route('student.skl.create') }}" class="btn btn-primary">Ajukan Surat Keterangan Lulus</a>
-    </div>
-
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-            <thead class="table-primary">
+    <div class="container">
+        <div class="mb-3">
+            <a href="{{ route('student.skl.create') }}" class="btn btn-primary">Ajukan Surat Keterangan Lulus</a>
+        </div>
+        <table class="table datatable">
+            <thead>
                 <tr>
                     <th>#</th>
                     <th>Nama Lengkap</th>
@@ -19,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($sklList as $index => $skl)
+                @foreach ($sklList as $index => $skl)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $skl->nama_lengkap }}</td>
@@ -44,13 +41,8 @@
                             @endif
                         </td>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="text-center">Belum ada pengajuan skl</td>
-                    </tr>
-                @endforelse
+                @endforeach
             </tbody>
         </table>
-    </div>
     </div>
 @endsection

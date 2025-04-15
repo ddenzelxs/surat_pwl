@@ -13,7 +13,7 @@
                         <th>Keperluan</th>
                         <th>Status</th>
                         <th>File PDF</th>
-                        <th>Aksi</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>

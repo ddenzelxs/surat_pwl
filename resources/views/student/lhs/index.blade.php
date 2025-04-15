@@ -1,15 +1,12 @@
 @extends('layouts.index')
 
-
 @section('content')
-    {{-- Tabel daftar LHS --}}
-    <div class="mb-3">
-        <a href="{{ route('student.lhs.create') }}" class="btn btn-primary">Ajukan LHS</a>
-    </div>
-
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-            <thead class="table-primary">
+    <div class="container">
+        <div class="mb-3">
+            <a href="{{ route('student.lhs.create') }}" class="btn btn-primary">Ajukan Laporan Hasil Studi</a>
+        </div>
+        <table class="table datatable">
+            <thead>
                 <tr>
                     <th>#</th>
                     <th>Nama Lengkap</th>
@@ -19,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($lhsList as $index => $lhs)
+                @foreach ($lhsList as $index => $lhs)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $lhs->nama_lengkap }}</td>
@@ -34,7 +31,6 @@
                             @else
                                 <span class="badge bg-primary">Selesai</span>
                             @endif
-
                         </td>
                         <td>
                             @if ($lhs->pdf_file)
@@ -44,13 +40,8 @@
                             @endif
                         </td>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="text-center">Belum ada pengajuan LHS</td>
-                    </tr>
-                @endforelse
+                @endforeach
             </tbody>
         </table>
-    </div>
     </div>
 @endsection

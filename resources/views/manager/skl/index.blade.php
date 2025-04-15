@@ -6,19 +6,21 @@
         <table class="table datatable">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>NRP</th>
                     <th>Nama Mahasiswa</th>
-                    <th>Keperluan Pembuatan Laporan</th>
+                    <th>Tanggal Lulus</th>
                     <th>Status</th>
-                    <th>Aksi</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($sklList as $skl)
+                @foreach ($sklList as $index => $skl)
                     <tr>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $skl->nrp_nip }}</td>
                         <td>{{ $skl->nama_lengkap }}</td>
-                        <td>{{ $skl->keperluan_pembuatan_laporan }}</td>
+                        <td>{{ $skl->tanggal_lulus }}</td>
                         <td>
                             @if ($skl->status == 0)
                                 <span class="badge bg-warning text-dark">Menunggu</span>

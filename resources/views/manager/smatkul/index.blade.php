@@ -5,19 +5,19 @@
     <table class="table datatable">
         <thead>
             <tr>
-                <th>No</th>
+                <th>#</th>
                 <th>NRP</th>
-                <th>Nama MK</th>
+                <th>Nama Mata Kuliah</th>
                 <th>Semester</th>
                 <th>Status</th>
                 <th>PDF</th>
-                <th>Aksi</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($smatkulList as $smatkul)
+            @foreach ($smatkulList as $index => $smatkul)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $index + 1 }}</td>
                     <td>{{ $smatkul->nrp_nip }}</td>
                     <td>{{ $smatkul->nama_mata_kuliah }}</td>
                     <td>{{ $smatkul->semester }}</td>
@@ -37,7 +37,7 @@
                     </td>
                     <td>
                         @if ($smatkul->status === 1 && !$smatkul->pdf_file)
-                            <form action="{{ route('manager.smatkul.sendPdf', $smatkul->id) }}" method="POST">
+                            <form action="{{ route('smatkul.sendPdf', $smatkul->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <button class="btn btn-primary btn-sm">Kirim PDF</button>

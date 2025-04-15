@@ -18,13 +18,13 @@ class SmatkulController extends Controller
             $smatkulList = Smatkul::where('nrp_nip', $user->nrp_nip)->get();
             return view('student.smatkul.index', compact('smatkulList'));
         } elseif ($user->role_id == 2) {
-            $smatkulList = Smatkul::whereHas('user', function ($q) use ($user) {
-                $q->where('prodi_id', $user->prodi_id);
+            $smatkulList = Smatkul::whereHas('user', function ($query) use ($user) {
+                $query->where('prodi_id', $user->prodi_id);
             })->get();
             return view('lecturer.smatkul.index', compact('smatkulList'));
         } elseif ($user->role_id == 3) {
-            $smatkulList = Smatkul::whereHas('user', function ($q) use ($user) {
-                $q->where('prodi_id', $user->prodi_id);
+            $smatkulList = Smatkul::whereHas('user', function ($query) use ($user) {
+                $query->where('prodi_id', $user->prodi_id);
             })->get();
             return view('manager.smatkul.index', compact('smatkulList'));
         }
@@ -89,10 +89,12 @@ class SmatkulController extends Controller
             'pdf_file' => 'required|mimes:pdf|max:2048',
         ]);
 
-        $path = $request->file('pdf_file')->store('pdfs', 'public');
+        $smatkul = Smatkul::findOrFail($id);
+        $path = $request->file('pdf_file')->store('pdfs/smatkul', 'public');
 
-        $surat->pdf_file = $path;
-        $surat->save();
+        $smatkul->pdf_file = $path;
+        $smatkul->status = 3;
+        $smatkul->save();
 
         return back()->with('success', 'PDF berhasil dikirim.');
     }

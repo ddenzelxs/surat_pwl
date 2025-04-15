@@ -16,13 +16,13 @@ class SmahaktifController extends Controller
             $smahaktifList = Smahaktif::where('nrp_nip', $user->nrp_nip)->get();
             return view('student.smahaktif.index', compact('smahaktifList'));
         } elseif ($user->role_id == 2) {
-            $smahaktifList = Smahaktif::whereHas('user', function ($q) use ($user) {
-                $q->where('prodi_id', $user->prodi_id);
+            $smahaktifList = Smahaktif::whereHas('user', function ($query) use ($user) {
+                $query->where('prodi_id', $user->prodi_id);
             })->get();
             return view('lecturer.smahaktif.index', compact('smahaktifList'));
         } elseif ($user->role_id == 3) {
-            $smahaktifList = Smahaktif::whereHas('user', function ($q) use ($user) {
-                $q->where('prodi_id', $user->prodi_id);
+            $smahaktifList = Smahaktif::whereHas('user', function ($query) use ($user) {
+                $query->where('prodi_id', $user->prodi_id);
             })->get();
             return view('manager.smahaktif.index', compact('smahaktifList'));
         }

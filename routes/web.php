@@ -88,10 +88,9 @@ Route::middleware('auth')->group(function () {
         // Surat Mahasiswa Aktif
         Route::get('/manager/smahaktif', [SmahaktifController::class, 'index'])->name('manager.smahaktif.index');
         Route::put('/manager/smahaktif/{id}/send-pdf', [SmahaktifController::class, 'sendPdf'])->name('smahaktif.sendPdf');
-        // Surat Keterang Mata Kuliah
+        // Surat Keterangan Mata Kuliah
         Route::get('/manager/smatkul', [SmatkulController::class, 'index'])->name('manager.smatkul.index');
-        Route::put('/smatkul/approve/{id}', [SmatkulController::class, 'approve'])->name('smatkul.approve');
-        Route::put('/smatkul/reject/{id}', [SmatkulController::class, 'reject'])->name('smatkul.reject');
+        Route::put('/manager/smatkul/{id}/send-pdf', [SmatkulController::class, 'sendPdf'])->name('smatkul.sendPdf');
     });
 
 });
