@@ -83,10 +83,10 @@ Route::middleware('auth')->group(function () {
         Route::put('/manager/skl/{id}/send-pdf', [SklController::class, 'sendPdf'])->name('manager.skl.sendPdf');
         // Surat Mahasiswa Aktif
         Route::get('/manager/smahaktif', [SmahaktifController::class, 'index'])->name('manager.smahaktif.index');
-        Route::put('/manager/smahaktif/{id}/send-pdf', [SmahaktifController::class, 'sendPdf'])->name('smahaktif.sendPdf');
+        Route::put('/manager/smahaktif/{id}/send-pdf', [SmahaktifController::class, 'sendPdf'])->name('manager.smahaktif.sendPdf');
         // Surat Keterangan Mata Kuliah
         Route::get('/manager/smatkul', [SmatkulController::class, 'index'])->name('manager.smatkul.index');
-        Route::put('/manager/smatkul/{id}/send-pdf', [SmatkulController::class, 'sendPdf'])->name('smatkul.sendPdf');
+        Route::put('/manager/smatkul/{id}/send-pdf', [SmatkulController::class, 'sendPdf'])->name('manager.smatkul.sendPdf');
     });
 
     //Admin
@@ -94,7 +94,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/admin/student', [AdminController::class, 'showStudent'])->name('admin.student');
         Route::get('/admin/lecturer', [AdminController::class, 'showLecturer'])->name('admin.lecturer');
-        Route::get('/admin/manager', [AdminController::class, 'showadmin'])->name('admin.manager');
+        Route::get('/admin/manager', [AdminController::class, 'showManager'])->name('admin.manager');
         Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
         Route::post('/admin/create', [AdminController::class, 'store'])->name('admin.store');
         Route::get('/admin/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
@@ -108,10 +108,10 @@ Route::middleware('auth')->group(function () {
         Route::put('/admin/skl/{id}/send-pdf', [SklController::class, 'sendPdf'])->name('admin.skl.sendPdf');
         // Surat Mahasiswa Aktif
         Route::get('/admin/smahaktif', [SmahaktifController::class, 'index'])->name('admin.smahaktif.index');
-        Route::put('/admin/smahaktif/{id}/send-pdf', [SmahaktifController::class, 'sendPdf'])->name('smahaktif.sendPdf');
+        Route::put('/admin/smahaktif/{id}/send-pdf', [SmahaktifController::class, 'sendPdf'])->name('admin.smahaktif.sendPdf');
         // Surat Keterangan Mata Kuliah
         Route::get('/admin/smatkul', [SmatkulController::class, 'index'])->name('admin.smatkul.index');
-        Route::put('/admin/smatkul/{id}/send-pdf', [SmatkulController::class, 'sendPdf'])->name('smatkul.sendPdf');
+        Route::put('/admin/smatkul/{id}/send-pdf', [SmatkulController::class, 'sendPdf'])->name('admin.smatkul.sendPdf');
     });
 
 });
