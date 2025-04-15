@@ -47,6 +47,7 @@
                                     @endif
                                 </td>
                                 <td>
+                                    @if ($lhs->status == 1)    
                                     <form action="{{ route('manager.lhs.sendPdf', $lhs->id) }}" method="POST"
                                         enctype="multipart/form-data" class="d-flex flex-column gap-1">
                                         @csrf
@@ -55,6 +56,9 @@
                                             class="form-control form-control-sm">
                                         <button type="submit" class="btn btn-success btn-sm mt-1">Kirim PDF</button>
                                     </form>
+                                    @elseif ($lhs->status == 3)
+                                        <a href="{{ asset('storage/' . $lhs->pdf_file) }}" target="_blank">Lihat PDF</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

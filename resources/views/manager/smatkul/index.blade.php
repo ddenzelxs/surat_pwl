@@ -55,17 +55,17 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($smatkul->status === 1 && !$smatkul->pdf_file)
-                                    <form action="{{ route('manager.smatkul.sendPdf', $smatkul->id) }}" method="POST"
-                                        enctype="multipart/form-data" class="d-flex flex-column gap-1">
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="file" name="pdf_file" accept="application/pdf" required
-                                            class="form-control form-control-sm">
-                                        <button type="submit" class="btn btn-success btn-sm mt-1">Kirim PDF</button>
-                                    </form>
-                                    @else
-                                        <span>-</span>
+                                    @if ($smatkul->status == 1)
+                                        <form action="{{ route('manager.smatkul.sendPdf', $smatkul->id) }}" method="POST"
+                                            enctype="multipart/form-data" class="d-flex flex-column gap-1">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="file" name="pdf_file" accept="application/pdf" required
+                                                class="form-control form-control-sm">
+                                            <button type="submit" class="btn btn-success btn-sm mt-1">Kirim PDF</button>
+                                        </form>
+                                    @elseif ($smatkul->status == 3)
+                                        <a href="{{ asset('storage/' . $smatkul->pdf_file) }}" target="_blank">Lihat PDF</a>
                                     @endif
                                 </td>
                             </tr>

@@ -45,19 +45,24 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($smatkul->status === 0)
-                                        <form action="{{ route('smatkul.approve', $smatkul->id) }}" method="POST" class="d-inline">
+                                    @if ($smatkul->status == 0)
+                                        <form action="{{ route('smatkul.approve', $smatkul->id) }}" method="POST"
+                                            style="display:inline-block">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-success btn-sm">Setujui</button>
+                                            <button type="submit" class="btn btn-success btn-sm"
+                                                onclick="return confirm('Yakin ingin menyetujui Laporan Hasil Studi ini?')">Setujui</button>
                                         </form>
-                                        <form action="{{ route('smatkul.reject', $smatkul->id) }}" method="POST" class="d-inline">
+
+                                        <form action="{{ route('smatkul.reject', $smatkul->id) }}" method="POST"
+                                            style="display:inline-block">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
+                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Yakin ingin menolak Laporan Hasil Studi ini?')">Tolak</button>
                                         </form>
-                                    @else
-                                        <span>-</span>
+                                    @elseif ($smatkul->status == 3)
+                                        <a href="{{ asset('storage/' . $smatkul->pdf_file) }}" target="_blank">Lihat PDF</a>
                                     @endif
                                 </td>
                             </tr>

@@ -47,14 +47,18 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <form action="{{ route('manager.skl.sendPdf', $skl->id) }}" method="POST"
-                                        enctype="multipart/form-data" class="d-flex flex-column gap-1">
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="file" name="pdf_file" accept="application/pdf" required
-                                            class="form-control form-control-sm">
-                                        <button type="submit" class="btn btn-success btn-sm mt-1">Kirim PDF</button>
-                                    </form>
+                                    @if ($skl->status == 1)
+                                        <form action="{{ route('manager.skl.sendPdf', $skl->id) }}" method="POST"
+                                            enctype="multipart/form-data" class="d-flex flex-column gap-1">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="file" name="pdf_file" accept="application/pdf" required
+                                                class="form-control form-control-sm">
+                                            <button type="submit" class="btn btn-success btn-sm mt-1">Kirim PDF</button>
+                                        </form>
+                                    @elseif ($skl->status == 3)
+                                        <a href="{{ asset('storage/' . $skl->pdf_file) }}" target="_blank">Lihat PDF</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

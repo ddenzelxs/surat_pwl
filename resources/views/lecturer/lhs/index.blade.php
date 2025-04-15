@@ -48,19 +48,23 @@
                                 </td>
                                 <td>
                                     @if ($lhs->status == 0)
-                                        <form action="{{ route('lhs.approve', $lhs->id) }}" method="POST" style="display:inline-block">
+                                        <form action="{{ route('lhs.approve', $lhs->id) }}" method="POST"
+                                            style="display:inline-block">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Yakin ingin menyetujui Laporan Hasil Studi ini?')">Setujui</button>
+                                            <button type="submit" class="btn btn-success btn-sm"
+                                                onclick="return confirm('Yakin ingin menyetujui Laporan Hasil Studi ini?')">Setujui</button>
                                         </form>
 
-                                        <form action="{{ route('lhs.reject', $lhs->id) }}" method="POST" style="display:inline-block">
+                                        <form action="{{ route('lhs.reject', $lhs->id) }}" method="POST"
+                                            style="display:inline-block">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menolak Laporan Hasil Studi ini?')">Tolak</button>
+                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Yakin ingin menolak Laporan Hasil Studi ini?')">Tolak</button>
                                         </form>
-                                    @else
-                                        <em>Tindakan selesai</em>
+                                    @elseif ($lhs->status == 3)
+                                        <a href="{{ asset('storage/' . $lhs->pdf_file) }}" target="_blank">Lihat PDF</a>
                                     @endif
                                 </td>
                             </tr>
@@ -81,7 +85,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.datatable').DataTable();
         });
     </script>

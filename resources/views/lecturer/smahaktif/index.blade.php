@@ -52,19 +52,24 @@
                                 </td>
                                 <td>
                                     @if ($smahaktif->status == 0)
-                                        <form action="{{ route('smahaktif.approve', $smahaktif->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('PUT')
-                                            <button class="btn btn-success btn-sm" onclick="return confirm('Setujui pengajuan ini?')">Setujui</button>
-                                        </form>
-                                        <form action="{{ route('smahaktif.reject', $smahaktif->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('PUT')
-                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Tolak pengajuan ini?')">Tolak</button>
-                                        </form>
-                                    @else
-                                        <em>Tidak ada aksi</em>
-                                    @endif
+                                    <form action="{{ route('smahak$smahaktif.approve', $smahaktif->id) }}" method="POST"
+                                        style="display:inline-block">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-success btn-sm"
+                                            onclick="return confirm('Yakin ingin menyetujui Laporan Hasil Studi ini?')">Setujui</button>
+                                    </form>
+
+                                    <form action="{{ route('smahak$smahaktif.reject', $smahaktif->id) }}" method="POST"
+                                        style="display:inline-block">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Yakin ingin menolak Laporan Hasil Studi ini?')">Tolak</button>
+                                    </form>
+                                @elseif ($smahaktif->status == 3)
+                                    <a href="{{ asset('storage/' . $smahaktif->pdf_file) }}" target="_blank">Lihat PDF</a>
+                                @endif
                                 </td>
                             </tr>
                         @endforeach

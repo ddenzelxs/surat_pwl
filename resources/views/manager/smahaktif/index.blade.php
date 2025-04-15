@@ -31,38 +31,40 @@
                         </tr>
                     </thead>
                     <tbody>
-                            @foreach ($smahaktifList as $index => $surat)
+                            @foreach ($smahaktifList as $index => $smahaktif)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $surat->nrp_nip }}</td>
-                                    <td>{{ $surat->nama_lengkap }}</td>
-                                    <td>{{ $surat->semester }}</td>
-                                    <td>{{ $surat->keperluan_pengajuan }}</td>
+                                    <td>{{ $smahaktif->nrp_nip }}</td>
+                                    <td>{{ $smahaktif->nama_lengkap }}</td>
+                                    <td>{{ $smahaktif->semester }}</td>
+                                    <td>{{ $smahaktif->keperluan_pengajuan }}</td>
                                     <td>
-                                        @if ($surat->status == 1)
+                                        @if ($smahaktif->status == 1)
                                             <span class="badge bg-success">Disetujui</span>
-                                        @elseif ($surat->status == 3)
+                                        @elseif ($smahaktif->status == 3)
                                             <span class="badge bg-primary">Selesai</span>
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($surat->pdf_file)
-                                            <a href="{{ asset('storage/' . $surat->pdf_file) }}" target="_blank">Lihat File</a>
+                                        @if ($smahaktif->pdf_file)
+                                            <a href="{{ asset('storage/' . $smahaktif->pdf_file) }}" target="_blank">Lihat File</a>
                                         @else
                                             <em>Belum dikirim</em>
                                         @endif
                                     </td>
                                     <td>
-                                        @if (!$surat->pdf_file)
-                                            <form action="{{ route('manager.smahaktif.sendPdf', $surat->id) }}" method="POST" enctype="multipart/form-data" class="d-flex flex-column gap-1">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="file" name="pdf_file" accept="application/pdf" required class="form-control form-control-sm mb-1">
-                                                <button type="submit" class="btn btn-sm btn-primary">Kirim PDF</button>
-                                            </form>
-                                        @else
-                                            <em>Sudah dikirim</em>
-                                        @endif
+                                        @if ($smahaktif->status == 1)
+                                        <form action="{{ route('manager.smahaktif.sendPdf', $smahaktif->id) }}" method="POST"
+                                            enctype="multipart/form-data" class="d-flex flex-column gap-1">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="file" name="pdf_file" accept="application/pdf" required
+                                                class="form-control form-control-sm">
+                                            <button type="submit" class="btn btn-success btn-sm mt-1">Kirim PDF</button>
+                                        </form>
+                                    @elseif ($smahaktif->status == 3)
+                                        <a href="{{ asset('storage/' . $smahaktif->pdf_file) }}" target="_blank">Lihat PDF</a>
+                                    @endif
                                     </td>
                                 </tr>
                             @endforeach

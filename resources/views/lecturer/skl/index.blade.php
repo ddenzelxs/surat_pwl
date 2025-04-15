@@ -48,20 +48,23 @@
                                 </td>
                                 <td>
                                     @if ($skl->status == 0)
-                                        <form action="{{ route('skl.approve', $skl->id) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('skl.approve', $skl->id) }}" method="POST"
+                                            style="display:inline-block">
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" class="btn btn-success btn-sm"
-                                                onclick="return confirm('Yakin ingin menyetujui Surat Keterangan Lulus ini?')">Setujui</button>
+                                                onclick="return confirm('Yakin ingin menyetujui Laporan Hasil Studi ini?')">Setujui</button>
                                         </form>
-                                        <form action="{{ route('skl.reject', $skl->id) }}" method="POST" class="d-inline">
+
+                                        <form action="{{ route('skl.reject', $skl->id) }}" method="POST"
+                                            style="display:inline-block">
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Yakin ingin menolak Surat Keterangan Lulus ini?')">Tolak</button>
+                                                onclick="return confirm('Yakin ingin menolak Laporan Hasil Studi ini?')">Tolak</button>
                                         </form>
-                                    @else
-                                        <em>Tindakan selesai</em>
+                                    @elseif ($skl->status == 3)
+                                        <a href="{{ asset('storage/' . $lhs->pdf_file) }}" target="_blank">Lihat PDF</a>
                                     @endif
                                 </td>
                             </tr>
