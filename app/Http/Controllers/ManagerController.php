@@ -114,20 +114,6 @@ class ManagerController extends Controller
 
         $user = Users::findOrFail($id);
 
-        if ($request->role_id == 2 && $request->status == 1) {
-            $kaprodiExist = Users::where('role_id', 2)
-                ->where('prodi_id', $request->prodi_id)
-                ->where('status', 1)
-                ->where('nrp_nip', '!=', $id)
-                ->first();
-
-            if ($kaprodiExist) {
-                return redirect()->back()
-                    ->withInput()
-                    ->withErrors(['prodi_id' => 'Sudah ada Kaprodi aktif untuk program studi ini. Nonaktifkan terlebih dahulu.']);
-            }
-        }
-
         $user->nrp_nip = $request->nrp_nip;
         $user->nama_lengkap = $request->nama_lengkap;
         $user->email = $request->email;

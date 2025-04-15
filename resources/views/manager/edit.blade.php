@@ -17,14 +17,12 @@
 
                 <div class="col-12">
                     <label for="nama_lengkap" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" maxlength="100"
-                        value="{{ old('nama_lengkap', $user->nama_lengkap) }}" required>
+                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="{{ $user->nama_lengkap }}" readonly>
                 </div>
 
                 <div class="col-12">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" maxlength="100"
-                        value="{{ old('email', $user->email) }}" required>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" readonly>
                 </div>
 
                 <div class="col-12">
@@ -42,29 +40,18 @@
 
                 <div class="col-12">
                     <label for="role_id" class="form-label">Role</label>
-                    <select class="form-select" id="role_id" name="role_id" required>
-                        <option value="">Pilih Role</option>
-                        @foreach ($roles as $role)
-                            <option value="{{ $role->id }}"
-                                {{ old('role_id', $user->role_id) == $role->id ? 'selected' : '' }}>
-                                {{ $role->nama_role }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <input class="form-control" value="{{ $user->role->nama_role }}" readonly>
                 </div>
+
+                <input type="hidden" class="form-control" id="role_id" name="role_id" value="{{ $user->role_id}}">
 
                 <div class="col-12">
                     <label for="prodi_id" class="form-label">Program Studi</label>
-                    <select class="form-select" id="prodi_id" name="prodi_id" required>
-                        <option value="">Pilih Program Studi</option>
-                        @foreach ($prodis as $prodi)
-                            <option value="{{ $prodi->id }}"
-                                {{ old('prodi_id', $user->prodi_id) == $prodi->id ? 'selected' : '' }}>
-                                {{ $prodi->nama_prodi }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <input class="form-control" value="{{ $user->prodi->nama_prodi }}" readonly>
                 </div>
+
+                <input type="hidden" class="form-control" id="prodi_id" name="prodi_id" value="{{ $user->prodi_id}}">
+
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-success">Update</button>
