@@ -48,7 +48,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($lhs->pdf_file)
+                                    @if ($lhs->status == 2 && $lhs->keterangan_penolakan)
+                                        <span class="text-danger d-block mt-1"><strong>Alasan:</strong>
+                                            {{ $lhs->keterangan_penolakan }}</span>
+                                    @elseif ($lhs->status == 3)
                                         <a href="{{ asset('storage/' . $lhs->pdf_file) }}" target="_blank">Lihat File</a>
                                     @else
                                         <em>Belum tersedia</em>

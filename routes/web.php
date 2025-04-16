@@ -8,6 +8,8 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\LecturerController;
+use App\Http\Controllers\ProdiController;
+
 use App\Http\Controllers\LhsController;
 use App\Http\Controllers\SklController;
 use App\Http\Controllers\SmahaktifController;
@@ -89,7 +91,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/manager/smatkul/{id}/send-pdf', [SmatkulController::class, 'sendPdf'])->name('manager.smatkul.sendPdf');
     });
 
-    //Admin
+    // Admin
     Route::middleware([RoleMiddleware::class . ':4'])->group(function () {
         Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/admin/student', [AdminController::class, 'showStudent'])->name('admin.student');
@@ -99,6 +101,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/admin/create', [AdminController::class, 'store'])->name('admin.store');
         Route::get('/admin/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
         Route::put('/admin/{id}', [AdminController::class, 'update'])->name('admin.update');
+
+        Route::get('/admin/prodi', [ProdiController::class, 'index'])->name('prodi.index');
+        Route::get('/prodi/create', [ProdiController::class, 'create'])->name('prodi.create');
+        Route::post('/prodi', [ProdiController::class, 'store'])->name('prodi.store');
+
         Route::patch('/admin/{id}/toggle-status', [AdminController::class, 'toggleStatus'])->name('admin.toggleStatus');
         // Laporan Hasil Studi
         Route::get('/admin/lhs', [LhsController::class, 'index'])->name('admin.lhs.index');

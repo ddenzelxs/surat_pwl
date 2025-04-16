@@ -67,13 +67,18 @@ class SmahaktifController extends Controller
         return redirect()->back()->with('status', 'Pengajuan disetujui.');
     }
 
-    public function reject($id)
+    public function reject(Request $request, $id)
     {
+        $request->validate([
+            'keterangan_penolakan' => 'required|string|max:1000',
+        ]);
+
         $smahaktif = Smahaktif::findOrFail($id);
         $smahaktif->status = 2;
+        $smahaktif->keterangan_penolakan = $request->keterangan_penolakan;
         $smahaktif->save();
 
-        return redirect()->back()->with('status', 'Pengajuan ditolak.');
+        return redirect()->back()->with('status', 'Surat Mahasiswa Aktif ditolak dengan keterangan.');
     }
 
     public function sendPdf(Request $request, $id)

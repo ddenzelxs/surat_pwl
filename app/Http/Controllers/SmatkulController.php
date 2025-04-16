@@ -72,13 +72,18 @@ class SmatkulController extends Controller
         return back()->with('success', 'Surat disetujui.');
     }
 
-    public function reject($id)
+    public function reject(Request $request, $id)
     {
-        $surat = Smatkul::findOrFail($id);
-        $surat->status = 2;
-        $surat->save();
+        $request->validate([
+            'keterangan_penolakan' => 'required|string|max:1000',
+        ]);
 
-        return back()->with('success', 'Surat ditolak.');
+        $smatkul = Smatkul::findOrFail($id);
+        $smatkul->status = 2;
+        $smatkul->keterangan_penolakan = $request->keterangan_penolakan;
+        $smatkul->save();
+
+        return redirect()->back()->with('status', 'Surat Pengantar Tugas Mata Kuliah ditolak dengan keterangan.');
     }
 
     public function sendPdf(Request $request, $id)

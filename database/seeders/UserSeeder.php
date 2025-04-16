@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'nama_lengkap' => 'Dummy Kaprodi',
                 'email' => 'dosen@example.com',
                 'status' => 1,
-                'prodi_id' => 2,
+                'prodi_id' => 1,
                 'role_id' => 2, 
             ],
             [
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
                 'nama_lengkap' => 'Dummy Manajer',
                 'email' => 'manajer@example.com',
                 'status' => 1,
-                'prodi_id' => 3,
+                'prodi_id' => 1,
                 'role_id' => 3, 
             ],
 
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
                 'nama_lengkap' => 'Dummy Admin',
                 'email' => 'admin@example.com',
                 'status' => 1,
-                'prodi_id' => 3,
+                'prodi_id' => 1,
                 'role_id' => 4, 
             ],
         ]);

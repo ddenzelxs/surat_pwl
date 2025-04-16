@@ -48,7 +48,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if ($smahaktif->pdf_file)
+                                    @if ($smahaktif->status == 2 && $smahaktif->keterangan_penolakan)
+                                        <span class="text-danger d-block mt-1"><strong>Alasan:</strong>
+                                            {{ $smahaktif->keterangan_penolakan }}</span>
+                                    @elseif ($smahaktif->status == 3)
                                         <a href="{{ asset('storage/' . $smahaktif->pdf_file) }}" target="_blank">Lihat File</a>
                                     @else
                                         <em>Belum tersedia</em>

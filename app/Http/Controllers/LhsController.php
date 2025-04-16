@@ -73,14 +73,20 @@ class LhsController extends Controller
         return redirect()->back()->with('status', 'Laporan Hasil Studi berhasil disetujui.');
     }
 
-    public function reject($id)
+    public function reject(Request $request, $id)
     {
+        $request->validate([
+            'keterangan_penolakan' => 'required|string|max:1000',
+        ]);
+
         $lhs = Lhs::findOrFail($id);
         $lhs->status = 2;
+        $lhs->keterangan_penolakan = $request->keterangan_penolakan;
         $lhs->save();
 
-        return redirect()->back()->with('status', 'Laporan Hasil Studi berhasil ditolak.');
+        return redirect()->back()->with('status', 'Laporan Hasil Studi ditolak dengan keterangan.');
     }
+
 
     // Manajer Operasional
     public function sendPdf(Request $request, $id)

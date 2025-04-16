@@ -67,13 +67,18 @@ class SklController extends Controller
         return redirect()->back()->with('status', 'Surat Keterangan Lulus berhasil disetujui');
     }
 
-    public function reject($id)
+    public function reject(Request $request, $id)
     {
+        $request->validate([
+            'keterangan_penolakan' => 'required|string|max:1000',
+        ]);
+
         $skl = Skl::findOrFail($id);
         $skl->status = 2;
+        $skl->keterangan_penolakan = $request->keterangan_penolakan;
         $skl->save();
 
-        return redirect()->back()->with('status', 'Surat Keterangan Lulus berhasil ditolak');
+        return redirect()->back()->with('status', 'Surat Keterangan Lulus ditolak dengan keterangan.');
     }
 
     // Manajer

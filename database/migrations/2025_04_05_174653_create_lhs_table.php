@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('keperluan_pembuatan_laporan')->nullable();
             $table->string('pdf_file')->nullable();
             $table->integer('status')->nullable()->default(0);
+            $table->text('keterangan_penolakan')->nullable();
         });
     }
 

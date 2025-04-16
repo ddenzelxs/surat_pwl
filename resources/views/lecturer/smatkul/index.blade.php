@@ -54,15 +54,47 @@
                                                 onclick="return confirm('Yakin ingin menyetujui Laporan Hasil Studi ini?')">Setujui</button>
                                         </form>
 
-                                        <form action="{{ route('smatkul.reject', $smatkul->id) }}" method="POST"
-                                            style="display:inline-block">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Yakin ingin menolak Laporan Hasil Studi ini?')">Tolak</button>
-                                        </form>
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#modalTolak-{{ $smatkul->id }}">
+                                            Tolak
+                                        </button>
+
+                                        <!-- Modal untuk isi alasan penolakan -->
+                                        <div class="modal fade" id="modalTolak-{{ $smatkul->id }}" tabindex="-1"
+                                            aria-labelledby="modalTolakLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <form action="{{ route('smatkul.reject', $smatkul->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="modalTolakLabel">Alasan Penolakan
+                                                            </h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Tutup"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                <label for="keterangan_penolakan"
+                                                                    class="form-label">Keterangan</label>
+                                                                <textarea class="form-control" name="keterangan_penolakan" rows="4" required></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-danger">Tolak</button>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Batal</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @elseif ($smatkul->status == 2)
+                                        <span class="text-danger d-block mt-1"><strong>Alasan:</strong>
+                                            {{ $smatkul->keterangan_penolakan }}</span>
                                     @elseif ($smatkul->status == 3)
-                                        <a href="{{ asset('storage/' . $smatkul->pdf_file) }}" target="_blank">Lihat PDF</a>
+                                        <a href="{{ asset('storage/' . $smatkul->pdf_file) }}" target="_blank">Lihat
+                                            PDF</a>
                                     @endif
                                 </td>
                             </tr>
@@ -83,7 +115,7 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.datatable').DataTable();
         });
     </script>

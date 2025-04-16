@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal_lulus');
             $table->string('pdf_file')->nullable();
             $table->integer('status')->nullable()->default(0);
-
+            $table->text('keterangan_penolakan')->nullable();
         });
     }
 

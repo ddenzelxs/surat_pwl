@@ -30,6 +30,11 @@
                         <i class="bi bi-circle"></i><span>Manager</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('prodi.index') }}">
+                        <i class="bi bi-circle"></i><span>Program Studi</span>
+                    </a>
+                </li>
             </ul>
         </li>
 
