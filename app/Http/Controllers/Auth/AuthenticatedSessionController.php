@@ -26,12 +26,22 @@ class AuthenticatedSessionController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
+        // Cari user berdasarkan email
+        $user = \App\Models\User::where('email', $credentials['email'])->first();
+
+        // Cek apakah user ditemukan dan status-nya nonaktif
+        if ($user && $user->status == 0) {
+            return back()->withErrors([
+                'email' => 'Akun Anda tidak aktif. Silakan hubungi administrator.',
+            ])->onlyInput('email');
+        }
+
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
             $user = Auth::user();
 
-            // Redirect by role_id
+            // Redirect berdasarkan role_id
             switch ($user->role_id) {
                 case 1:
                     return redirect()->intended(route('student.index'));

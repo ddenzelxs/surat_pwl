@@ -13,8 +13,14 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        return view('admin.index', [
+            'totalUsers' => Users::count(),
+            'totalMahasiswa' => Users::where('role_id', 1)->count(),
+            'totalDosen' => Users::where('role_id', 2)->count(),
+            'totalProdi' => Prodi::count(),
+        ]);
     }
+
 
     public function showStudent()
     {
