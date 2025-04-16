@@ -52,7 +52,7 @@
                                 </td>
                                 <td>
                                     @if ($smahaktif->status == 0)
-                                        <form action="{{ route('smahak$smahaktif.approve', $smahaktif->id) }}"
+                                        <form action="{{ route('smahaktif.approve', $smahaktif->id) }}"
                                             method="POST" style="display:inline-block">
                                             @csrf
                                             @method('PUT')
@@ -69,7 +69,7 @@
                                         <div class="modal fade" id="modalTolak-{{ $smahaktif->id }}" tabindex="-1"
                                             aria-labelledby="modalTolakLabel" aria-hidden="true">
                                             <div class="modal-dialog">
-                                                <form action="{{ route('smaha$smahaktif.reject', $smahaktif->id) }}" method="POST">
+                                                <form action="{{ route('smahaktif.reject', $smahaktif->id) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="modal-content">

@@ -33,19 +33,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($smatkulList as $index => $surat)
+                        @foreach ($smatkulList as $index => $smatkul)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $surat->surat_tujuan }}</td>
-                                <td>{{ $surat->nama_mata_kuliah }}</td>
-                                <td>{{ $surat->kode_mata_kuliah }}</td>
-                                <td>{{ $surat->semester }}</td>
+                                <td>{{ $smatkul->tujuan }}</td>
+                                <td>{{ $smatkul->nama_mata_kuliah }}</td>
+                                <td>{{ $smatkul->kode_mata_kuliah }}</td>
+                                <td>{{ $smatkul->semester }}</td>
                                 <td>
-                                    @if ($surat->status == 0)
+                                    @if ($smatkul->status == 0)
                                         <span class="badge bg-warning text-dark">Menunggu</span>
-                                    @elseif ($surat->status == 1)
+                                    @elseif ($smatkul->status == 1)
                                         <span class="badge bg-success">Disetujui</span>
-                                    @elseif ($surat->status == 2)
+                                    @elseif ($smatkul->status == 2)
                                         <span class="badge bg-danger">Ditolak</span>
                                     @else
                                         <span class="badge bg-primary">Selesai</span>

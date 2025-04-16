@@ -26,7 +26,6 @@
                             <th>Semester</th>
                             <th>Keperluan</th>
                             <th>Status</th>
-                            <th>File PDF</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -39,20 +38,17 @@
                                     <td>{{ $smahaktif->semester }}</td>
                                     <td>{{ $smahaktif->keperluan_pengajuan }}</td>
                                     <td>
-                                        @if ($smahaktif->status == 1)
-                                            <span class="badge bg-success">Disetujui</span>
-                                        @elseif ($smahaktif->status == 3)
-                                            <span class="badge bg-primary">Selesai</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($smahaktif->pdf_file)
-                                            <a href="{{ asset('storage/' . $smahaktif->pdf_file) }}" target="_blank">Lihat File</a>
+                                        @if ($smahaktif->status == 0)
+                                        <span class="badge bg-warning text-dark">Menunggu</span>
+                                        @elseif ($smahaktif->status == 1)
+                                        <span class="badge bg-success">Disetujui</span>
+                                        @elseif ($smahaktif->status == 2)
+                                        <span class="badge bg-danger">Ditolak</span>
                                         @else
-                                            <em>Belum dikirim</em>
+                                        <span class="badge bg-primary">Selesai</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td> 
                                         @if ($smahaktif->status == 1)
                                         <form action="{{ route('manager.smahaktif.sendPdf', $smahaktif->id) }}" method="POST"
                                             enctype="multipart/form-data" class="d-flex flex-column gap-1">

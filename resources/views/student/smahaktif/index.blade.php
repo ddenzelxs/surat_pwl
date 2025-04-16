@@ -35,7 +35,7 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $smahaktif->semester }}</td>
-                                <td>{{ $smahaktif->keperluan_pengajuan }}</td>
+                                <td>{{ $smahaktif->keperluan_pengajuan}}</td>
                                 <td>
                                     @if ($smahaktif->status == 0)
                                         <span class="badge bg-warning text-dark">Menunggu</span>

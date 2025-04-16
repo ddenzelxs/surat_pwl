@@ -55,7 +55,7 @@ class SmahaktifController extends Controller
             'status' => 0,
         ]);
 
-        return redirect()->route('student.index')->with('status', 'Pengajuan surat keterangan aktif berhasil dikirim.');
+        return redirect()->route('student.smahaktif.index')->with('status', 'Pengajuan surat keterangan aktif berhasil dikirim.');
     }
 
     public function approve($id)

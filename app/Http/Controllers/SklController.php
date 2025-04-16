@@ -54,7 +54,7 @@ class SklController extends Controller
             'status' => 0,
         ]);
 
-        return redirect()->route('student.index')->with('status', 'Pengajuan SKL berhasil dikirim');
+        return redirect()->route('student.skl.index')->with('status', 'Pengajuan SKL berhasil dikirim');
     }
 
     // Kaprodi

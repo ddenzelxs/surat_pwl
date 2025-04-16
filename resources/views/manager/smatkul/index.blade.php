@@ -25,7 +25,6 @@
                             <th>Nama Mata Kuliah</th>
                             <th>Semester</th>
                             <th>Status</th>
-                            <th>PDF</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -45,13 +44,6 @@
                                         <span class="badge bg-danger">Ditolak</span>
                                     @else
                                         <span class="badge bg-primary">Selesai</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if ($smatkul->pdf_file)
-                                        <a href="{{ asset('storage/' . $smatkul->pdf_file) }}" target="_blank">Lihat PDF</a>
-                                    @else
-                                        <span>-</span>
                                     @endif
                                 </td>
                                 <td>

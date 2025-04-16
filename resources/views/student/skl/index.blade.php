@@ -25,7 +25,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nama Lengkap</th>
-                            <th>Keperluan</th>
+                            <th>Tanggal Lulus</th>
                             <th>Status</th>
                             <th>File PDF</th>
                         </tr>
@@ -35,7 +35,7 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $skl->nama_lengkap }}</td>
-                                <td>{{ $skl->keperluan_pembuatan_laporan }}</td>
+                                <td>{{ $skl->tanggal_lulus }}</td>
                                 <td>
                                     @if ($skl->status == 0)
                                         <span class="badge bg-warning text-dark">Pending</span>

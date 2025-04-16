@@ -60,7 +60,7 @@ class LhsController extends Controller
             'status' => 0,
         ]);
 
-        return redirect()->route('student.index')->with('status', 'Form berhasil diajukan');
+        return redirect()->route('student.lhs.index')->with('status', 'Form berhasil diajukan');
     }
 
     // Kepala Program Studi
